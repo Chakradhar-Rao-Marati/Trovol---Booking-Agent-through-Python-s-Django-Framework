@@ -50,7 +50,11 @@
                            <div class="niceCountryInputSelector se_flag" style="width: 200px;" data-selectedcountry="IN" data-showspecial="false" data-showflags="true" data-i18nall="All selected"
                               data-i18nnofilter="No selection" data-i18nfilter="Filter" data-onchangecallback="onChangeCallback" />
                            </div>
-                           <span> <a href="accounts/register">Register</a> </span>   
+                           {%if user.is_authenticated %}
+                           <span>Hi, {{user.first_name}}</span>
+                           {%else%}
+                           <span> <a href="accounts/register">Register</a> </span> 
+                           {%endif%}  
                         </div>
                         <ul class="top_infomation">
                            <li><img src="{% static 'images/ti_call.png' %}" alt="#"/>Call : +1234567890</li>
@@ -95,14 +99,21 @@
                               <li class="nav-item">
                                  <a class="nav-link" href="contact.html">Contact Us</a>
                               </li>
+                              {%if user.is_authenticated %}
+                              <li class="nav-item">
+                                 <a class="nav-link" href="accounts/logout">Logout</a>
+                              </li>
+                              {%endif%}
                            </ul>
                         </div>
                      </nav>
                   </div>
                   <div class="col-md-2  d_none">
                      <ul class="email text_align_right">
-                        <li><a href="{% static 'Javascript:void(0)' %}"><i class="fa fa-user" aria-hidden="true"></i></a></li>
-                        <li><a href="{% static 'Javascript:void(0)' %}"><i class="fa fa-search" aria-hidden="true"></i>   </a></li>
+                        {%if not user.is_authenticated %}
+                        <li><a href="accounts/login"><i class="fa fa-user" aria-hidden="true">  Login</i></a></li>
+                        {%endif%}
+                        <!--<li><a href="{% static 'Javascript:void(0)' %}"><i class="fa fa-search" aria-hidden="true"></i>   </a></li>-->
                      </ul>
                   </div>
                </div>

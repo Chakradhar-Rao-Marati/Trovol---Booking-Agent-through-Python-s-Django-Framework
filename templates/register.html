@@ -15,6 +15,9 @@
         Password: <input type="password" name="password1" placeholder="Password"><br>
         Password again: <input type="password" name="password2" placeholder=" Confirm Password"><br>
         <input type="submit">
+        {% for message in messages%}
+        <br><br><h1>{{message}}</h1>
+        {%endfor%}
     </form>
 </body>
 </html>
